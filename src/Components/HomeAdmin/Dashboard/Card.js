@@ -8,17 +8,17 @@ class Card extends Component {
                     <div className="card-body">
                         <div className="clearfix">
                             <div className="float-left">
-                                <i className="mdi mdi-cube text-danger icon-lg" />
+                                <i className={"mdi "+ this.props.icon + " text-danger icon-lg"} />
                             </div>
                             <div className="float-right">
-                                <p className="mb-0 text-right">Tổng doanh thu</p>
+                                <p className="mb-0 text-right">{this.props.title}</p>
                                 <div className="fluid-container">
-                                    <h3 className="font-weight-medium text-right mb-0">5.000đ</h3>
+                                    <h3 className="font-weight-medium text-right mb-0">{this.props.value}</h3>
                                 </div>
                             </div>
                         </div>
                         <p className="text-muted mt-3 mb-0">
-                            <i className="mdi mdi-alert-octagon mr-1" aria-hidden="true" /> 100% doanh thu trong tháng
+                            <i className="mdi mdi-alert-octagon mr-1" aria-hidden="true" /> {this.props.description}
 </p>
                     </div>
                 </div>

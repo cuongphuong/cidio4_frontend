@@ -98,7 +98,10 @@ class SlideBar extends Component {
                         <div className="collapse" id="ui-thongke" style={{}}>
                             <ul className="nav flex-column sub-menu">
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/admin/service/build-package">Thống kê doanh thu</Link>
+                                    <Link className="nav-link" to="/admin/thongke/home">Tổng quan</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/admin/thongke/doanhthu/home">Thống kê doanh thu</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/admin/thongke/dashboard">Thống kê đơn hàng</Link>
