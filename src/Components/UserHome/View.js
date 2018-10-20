@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
+import { Link } from 'react-router-dom';
+
 class View extends Component {
     constructor(props) {
         super(props);
@@ -146,7 +148,7 @@ class View extends Component {
                                         (this.state.cungchuyenmuc.length > 0) ? this.state.cungchuyenmuc.map((item, i) => <li key={i}>
                                             <a href={"/view/" + item.id_baiviet + "/" + this.to_slug(item.tieude) + ".html"}>{item.tieude}</a>
                                             <span style={{ color: '#919191' }}> - {this.timeSince(new Date(item.created_at))}</span> &nbsp;|&nbsp;
-                                            <a rel="nofollow" className="article-link" style={{ color: '#34a4dd' }} href={"/list/" + this.state.content.id_theloai + "/" + this.to_slug(this.state.content.tentheloai) + ".html"}>{this.state.content.tentheloai}</a>
+                                            <Link rel="nofollow" className="article-link" style={{ color: '#34a4dd' }} to={"/list/" + this.state.content.id_theloai + "/" + this.to_slug(this.state.content.tentheloai) + ".html"}>{this.state.content.tentheloai}</Link>
                                         </li>) : ''
                                     }
 

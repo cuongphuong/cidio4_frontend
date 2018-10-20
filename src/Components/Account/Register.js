@@ -47,6 +47,7 @@ class Register extends Component {
                     .then(response => response.json())
                     .then(response => {
                         this.setState({ textSubmitButton: "Đăng kí", isSubmit: false });
+                        console.log(response);
 
                         if (response.status === true) {
                             var data = response.data;
@@ -205,7 +206,7 @@ class Register extends Component {
                                         </div>
                                         <div className="text-block text-center my-3">
                                             <span className="text-small font-weight-semibold">Tôi đã có tài khoản ?</span>
-                                            <Link to="/login" className="text-black text-small"> Đăng nhập</Link>
+                                            <Link to="/acc/login" className="text-black text-small"> Đăng nhập</Link>
                                         </div>
                                     </form>
                                 </div>

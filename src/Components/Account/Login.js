@@ -110,7 +110,7 @@ class Login extends Component {
                                         </div> */}
                                         <div className="text-block text-center my-3">
                                             <span className="text-small font-weight-semibold">Chưa có tài khoản ?</span>
-                                            <Link to="/register" className="text-black text-small"> Đăng kí tài khoản</Link>
+                                            <Link to="/acc/register" className="text-black text-small"> Đăng kí tài khoản</Link>
                                         </div>
                                     </form>
                                 </div>

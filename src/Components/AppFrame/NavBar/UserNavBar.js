@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class UserNavBar extends Component {
   render() {
@@ -11,7 +12,7 @@ class UserNavBar extends Component {
               <div className="pg_logo"></div>
             </div>
             <div className="pg_4_header_right_menu">
-              <Link to='/acc/login' className="btn btn-success" style={{color: 'black'}}>Đăng nhập</Link>
+              {this.props.StateInfoUser.token !== null ? <div style={{float: 'right'}}>Xin chào {this.props.StateInfoUser.hoten}</div> : <Link to='/acc/login' className="btn btn-success" style={{color: 'black'}}>Đăng nhập</Link>}
             </div>
           </div>
         </div>
@@ -20,4 +21,6 @@ class UserNavBar extends Component {
   }
 }
 
-export default UserNavBar;
+export default connect(function (state) {
+  return { StateInfoUser: state.StateInfoUser }
+})(UserNavBar);
