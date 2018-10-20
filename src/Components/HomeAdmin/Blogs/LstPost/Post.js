@@ -61,6 +61,35 @@ class Post extends Component {
         return tmp.textContent || tmp.innerText || "";
     }
 
+    to_slug(str) {
+        // Chuyển hết sang chữ thường
+        str = str.toLowerCase();
+
+        // xóa dấu
+        str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+        str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+        str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+        str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+        str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+        str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+        str = str.replace(/(đ)/g, 'd');
+
+        // Xóa ký tự đặc biệt
+        str = str.replace(/([^0-9a-z-\s])/g, '');
+
+        // Xóa khoảng trắng thay bằng ký tự -
+        str = str.replace(/(\s+)/g, '-');
+
+        // xóa phần dự - ở đầu
+        str = str.replace(/^-+/g, '');
+
+        // xóa phần dư - ở cuối
+        str = str.replace(/-+$/g, '');
+
+        // return
+        return str;
+    }
+
     render() {
         return (
             <div className="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
@@ -91,19 +120,19 @@ class Post extends Component {
                     <div className="btn-group dropdown">
                         <button type="button" className="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Điều khiển</button>
                         <div className="dropdown-menu">
-                            <a className="dropdown-item" href="/admin">
+                            <a className="dropdown-item" href={"/view/" + this.props.id + "/" + this.to_slug(this.props.title) +".html"}>
                                 <i className="fa fa-reply fa-fw" />Đi tới bài viết</a>
-                            <Link className="dropdown-item" to={"/admin/post/editor/update/" + this.props.id}>
-                                <i className="fa fa-history fa-fw" />Chỉnh sửa</Link>
-                            <a className="dropdown-item" href="/admin">
-                                <i className="fa fa-times text-danger fa-fw" />Trả lời nhanh</a>
-                            <div className="dropdown-divider" />
-                            <button onClick={() => this.handleDelete(this.props.id, this.props.title)} style={{ color: 'red', cursor: 'pointer' }} className="dropdown-item" href="/admin">
-                                <i className="fa fa-check text-success fa-fw" />Xóa bài</button>
-                        </div>
+                        <Link className="dropdown-item" to={"/admin/post/editor/update/" + this.props.id}>
+                            <i className="fa fa-history fa-fw" />Chỉnh sửa</Link>
+                        {/* <a className="dropdown-item" href="/admin">
+                                <i className="fa fa-times text-danger fa-fw" />Trả lời nhanh</a> */}
+                        <div className="dropdown-divider" />
+                        <button onClick={() => this.handleDelete(this.props.id, this.props.title)} style={{ color: 'red', cursor: 'pointer' }} className="dropdown-item" href="/admin">
+                            <i className="fa fa-check text-success fa-fw" />Xóa bài</button>
                     </div>
                 </div>
             </div>
+            </div >
         );
     }
 }

@@ -2,19 +2,33 @@ import React, { Component } from 'react';
 import ListCard from '../Dashboard/ListCard';
 import DoanhThuIndex from './DoanhThu/DoanhThuIndex';
 import DatePicker from 'react-date-picker';
+import { connect } from 'react-redux';
 
 class ThongKeTongQuan extends Component {
     constructor(props) {
         super(props);
         this.state = {
             date: new Date(),
+            lstDonHangXapToi: []
         }
+    }
+
+    componentDidMount() {
+        fetch(this.props.StateInfoSystem.domain + '/api/thongke/donhangxaptoi', {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(response => {
+                this.setState({
+                    lstDonHangXapToi: response
+                });
+            })
+            .catch(error => console.log());
     }
 
     onChange = date => this.setState({ date })
 
 
-    getDate
 
     render() {
         return (
@@ -30,12 +44,11 @@ class ThongKeTongQuan extends Component {
                                     value={this.state.date}
                                 />
 
-                                <ul className="list-group" style={{marginTop: '20px'}}>
+                                <ul className="list-group" style={{ marginTop: '20px' }}>
                                     <li className="list-group-item active">Danh sách đơn hàng trong ngày {this.state.date !== '' ? this.state.date.getDate() + "/" + this.state.date.getMonth() : ''}</li>
-                                    <li className="list-group-item">Dapibus ac facilisis in</li>
-                                    <li className="list-group-item">Morbi leo risus</li>
-                                    <li className="list-group-item">Porta ac consectetur ac</li>
-                                    <li className="list-group-item">Vestibulum at eros</li>
+                                    {
+                                        (this.state.lstDonHangXapToi.length > 0) ? this.state.lstDonHangXapToi.map((e, i) => <li className="list-group-item">abc</li>) : <li className="list-group-item">Không có đơn nào</li>
+                                    }
                                 </ul>
 
                             </div>
@@ -50,4 +63,6 @@ class ThongKeTongQuan extends Component {
     }
 }
 
-export default ThongKeTongQuan;
+export default connect(function (state) {
+    return { StateInfoSystem: state.StateInfoSystem, StateInfoUser: state.StateInfoUser }
+})(ThongKeTongQuan);
