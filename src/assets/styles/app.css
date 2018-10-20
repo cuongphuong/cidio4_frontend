@@ -641,6 +641,7 @@ body{
     bottom: 0;
     background:rgba(102, 101, 101, 0.9);
     display: none;
+    z-index: 20000;
 }
 
 .pg_4_btn_close_popup{
@@ -680,3 +681,6 @@ body{
     background: #555; 
 }
 
+.react-date-picker__calendar{
+    z-index: 1000;
+}
