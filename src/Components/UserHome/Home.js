@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import Item from './Item';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { error } from 'util';
 
 class Home extends Component {
     constructor(props) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link } from 'react-router-dom';
 
 class UserNavBar extends Component {
   render() {
@@ -10,7 +11,7 @@ class UserNavBar extends Component {
               <div className="pg_logo"></div>
             </div>
             <div className="pg_4_header_right_menu">
-              <a className="btn btn-success">Đăng nhập</a>
+              <Link to='/acc/login' className="btn btn-success" style={{color: 'black'}}>Đăng nhập</Link>
             </div>
           </div>
         </div>
