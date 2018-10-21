@@ -33,7 +33,7 @@ class RegisterService extends Component {
 
     componentDidMount() {
         // console.log(this.props.StateInfoSystem.domain + '/api/get/package/' + this.state.page + '/' + this.state.limit + '?token=' + this.props.StateInfoUser.token)
-        fetch(this.props.StateInfoSystem.domain + '/api/get/package/' + this.state.page + '/' + this.state.limit + '?token=' + this.props.StateInfoUser.token, {
+        fetch(this.props.StateInfoSystem.domain + '/api/get/package-admin/' + this.state.page + '/' + this.state.limit + '?token=' + this.props.StateInfoUser.token, {
             method: 'GET',
         })
             .then(response => response.json())
