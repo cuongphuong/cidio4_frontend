@@ -82,9 +82,6 @@ class SlideBar extends Component {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/admin/users">Danh sách thành viên</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="pages/ui-features/buttons.html">Thành viên mới đăng kí</a>
-                                </li>
                             </ul>
                         </div>
                     </li>
@@ -106,16 +103,9 @@ class SlideBar extends Component {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/admin/thongke/donhang">Thống kê đơn hàng</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/admin/service/package/lst">Thống kê thành viên</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/admin/service/build-package">Thống kê truy cập</Link>
-                                </li>
                             </ul>
                         </div>
                     </li>
-
 
                     <li className="nav-item">
                         <a className="nav-link" href="index.html">

@@ -7,6 +7,7 @@ import UserFooter from '../AppFrame/Footer/UserFooter';
 import View from './View';
 import ListPost from './ListPost';
 import DBRegister from './RegisterPackage/DBRegister';
+import DanhSachHoaDon from './RegisterPackage/DanhSachHoaDon';
 
 const UserHome = ({ match }) => {
     return (
@@ -16,6 +17,7 @@ const UserHome = ({ match }) => {
             <Route path={match.url + 'register'} component={DBRegister}/>
             <Route exact path={match.url + 'view/:id/:slug.html'} component={View} />
             <Route exact path={match.url + 'list/:id/:slug.html'} component={ListPost} />
+            <Route exact path={match.url + 'hoadon'} component={DanhSachHoaDon} />
             <UserFooter></UserFooter>
         </div>
     );

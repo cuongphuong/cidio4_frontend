@@ -194,9 +194,9 @@ class HoanTatDangKi extends Component {
         })
         .then(response => response.json())
         .then(response => {
+            // console.log(response)
             if(response.status === true){
                 alert('Đã đăng kí hóa đơn.');
-                console.log(response);
                 window.location = '/';
             }
         })

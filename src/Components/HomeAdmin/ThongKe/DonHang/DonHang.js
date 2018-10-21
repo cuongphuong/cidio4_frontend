@@ -177,26 +177,29 @@ class DonHang extends Component {
                                 </div>
                                 <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                     {/* ----------- */}
-                                    <div className="table-responsive">
-                                        <table className="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Tháng/Năm </th>
-                                                    <th>Giá trị</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {(this.state.data.length > 0) ? this.state.data.map((e, i) => <tr key={i} style={{ height: '10px', padding: '0' }}>
-                                                    <td>{e.name}</td>
-                                                    <td>{e['Đơn hàng']}</td>
-                                                </tr>)
-                                                    : <tr></tr>}
+                                    {
+                                        this.state.type === 'year' ?
+                                            <div className="table-responsive">
+                                                <table className="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tháng/Năm </th>
+                                                            <th>Giá trị</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {(this.state.data.length > 0) ? this.state.data.map((e, i) => <tr key={i} style={{ height: '10px', padding: '0' }}>
+                                                            <td>{e.name}</td>
+                                                            <td>{e['Đơn hàng']}</td>
+                                                        </tr>)
+                                                            : <tr></tr>}
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            :
+                                            ''
+                                    }
                                     {/* ----------- */}
                                 </div>
                             </div>

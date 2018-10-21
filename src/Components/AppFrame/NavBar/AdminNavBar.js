@@ -22,8 +22,8 @@ class NavBar extends Component {
                             </Link>
                         </li>
                         <li className="nav-item active">
-                            <a href="/" className="nav-link">
-                                <i className="mdi mdi-elevation-rise" />Thống kê</a>
+                            <Link to="/admin/thongke/home" className="nav-link">
+                                <i className="mdi mdi-elevation-rise" />Thống kê</Link>
                         </li>
                         {/* <li className="nav-item">
                             <a href="/" className="nav-link">

@@ -6,6 +6,7 @@ class ListOrder extends Component {
         super(props);
         this.state = {
             lstHoaDon: [],
+            lstHoaDonXN: [],
             popupDisplay: 'none',
             lstMon: [],
             lstDoUong: [],
@@ -90,9 +91,26 @@ class ListOrder extends Component {
                 }
             })
             .catch(error => console.log());
+
+
+
+        fetch(this.props.StateInfoSystem.domain + '/api/agree/hoadon?token=' + this.props.StateInfoUser.token, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response.status === true) {
+                    console.log(response);
+                    this.setState({
+
+                        lstHoaDonXN: response.data
+                    });
+                }
+            })
+            .catch(error => console.log());
     }
 
-    handleXacNhanHoadon(id_hoadon) {
+    handleXacNhanHoadon(id_hoadon, check) {
         if (window.confirm('Xác nhận hóa đơn này không')) {
             var person = window.prompt("Nhập mã hóa đơn để xác nhận", "");
 
@@ -103,10 +121,17 @@ class ListOrder extends Component {
                     .then(response => response.json())
                     .then(response => {
                         if (response.status === true) {
-                            var index = this.state.lstHoaDon.findIndex(i => i.id_hoadon === response.data.id_hoadon);
-                            var tmpObj = [...this.state.lstHoaDon];
-                            tmpObj[index].tinhtrang = response.data.tinhtrang;
-                            this.setState({ lstHoaDon: tmpObj });
+                            if (check === 1) {
+                                var index = this.state.lstHoaDon.findIndex(i => i.id_hoadon === response.data.id_hoadon);
+                                var tmpObj = [...this.state.lstHoaDon];
+                                tmpObj[index].tinhtrang = response.data.tinhtrang;
+                                this.setState({ lstHoaDon: tmpObj });
+                            } else {
+                                var index = this.state.lstHoaDonXN.findIndex(i => i.id_hoadon === response.data.id_hoadon);
+                                var tmpObj = [...this.state.lstHoaDonXN];
+                                tmpObj[index].tinhtrang = response.data.tinhtrang;
+                                this.setState({ lstHoaDonXN: tmpObj });
+                            }
                         }
                     })
                     .catch(error => console.log(error));
@@ -149,14 +174,54 @@ class ListOrder extends Component {
                                                 <label className={e.tinhtrang === 1 ? "badge badge-success" : "badge badge-danger"}>{e.tinhtrang === 1 ? 'Đã xác nhận' : 'Chưa xác nhận'}</label>
                                             </td>
                                             <td>
-                                                <button onClick={() => this.handleXacNhanHoadon(e.id_hoadon)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">{e.tinhtrang === 1 ? 'Undo xác nhận' : 'Xác nhận hóa đơn'}</button>
+                                                <button onClick={() => this.handleXacNhanHoadon(e.id_hoadon, 1)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">{e.tinhtrang === 1 ? 'Undo xác nhận' : 'Xác nhận hóa đơn'}</button>
                                                 <button onClick={() => this.handleChangeShowDisplay(e.id_goi, e.id_hoadon)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">Hiển thị thực đơn chi tiết</button>
                                             </td>
                                         </tr>) : <tr></tr>
                                     }
                                 </tbody>
+
                             </table>
                         </div>
+
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <div className="table-responsive">
+                            <table className="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Khách hàng</th>
+                                        <th>Điện thoại</th>
+                                        <th>Giá trị</th>
+                                        <th>Tình trạng</th>
+                                        <th>Điều khiển</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        (this.state.lstHoaDonXN.length > 0) ? this.state.lstHoaDonXN.map((e, i) => <tr key={i}>
+                                            <td>{e.id_hoadon}</td>
+                                            <td>{e.hoten}</td>
+                                            <td><button style={{ padding: '0px' }} className="btn btn-link" onClick={() => this.handleCall(e.sodienthoai)}>{e.sodienthoai}</button></td>
+                                            <td className="text-danger"> {e.tongtien.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })} <i className="mdi mdi-arrow-up" />
+                                            </td>
+                                            <td>
+                                                <label className={parseInt(e.tinhtrang) === 1 ? "badge badge-success" : "badge badge-danger"}>{parseInt(e.tinhtrang) === 1 ? 'Đã xác nhận' : 'Chưa xác nhận'}</label>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => this.handleXacNhanHoadon(e.id_hoadon, 2)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">{e.tinhtrang === 1 ? 'Undo hủy xác nhận' : 'Hủy các nhận'}</button>
+                                                <button onClick={() => this.handleChangeShowDisplay(e.id_goi, e.id_hoadon)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">Hiển thị thực đơn chi tiết</button>
+                                            </td>
+                                        </tr>) : <tr></tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+
                     </div>
                 </div>
 
