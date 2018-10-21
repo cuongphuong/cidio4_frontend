@@ -17,6 +17,7 @@ class HoanTatDangKi extends Component {
         console.log('componentWillMount');
         var tmpStatePackage = JSON.parse(this.b64DecodeUnicode(cookie.load('cidiopackage')));
         var tmpStateInfoRegister = JSON.parse(this.b64DecodeUnicode(cookie.load('registerinfo')));
+        console.log(tmpStateInfoRegister);
         var { dispatch } = this.props;
         dispatch({
             type: 'ADD_INFO_PACKAGE',
@@ -159,8 +160,13 @@ class HoanTatDangKi extends Component {
                             type: 'ADD_INFO_REGISTER_SERVICE',
                             item: { ...this.props.StateInfoRegisterService, id_goi_dichvu: response.data.id_goi }
                         });
+
+                        var tongTien = (this.props.StateInfoRegisterService.info.soban * this.tongTienThucDon()) + this.tongTienDoUong() + this.tongTienKhac();
+                        // alert(tongTien);
+                        if (window.confirm('Đăng kí hóa đơn này?')) {
+                            this.saveHoaDon(response.data.id_goi, tongTien);
+                        }
                         
-                        this.saveHoaDon(response.data.id_goi);
 
                     } else {
                         alert("Có lổi xảy ra, thử lại sau");
@@ -172,7 +178,7 @@ class HoanTatDangKi extends Component {
         }
     }
 
-    saveHoaDon(idGoi){
+    saveHoaDon(idGoi, tongTien){
         var formData = new FormData();
         formData.append('token', this.props.StateInfoUser.token);
         formData.append('id_goi', idGoi);
@@ -180,6 +186,7 @@ class HoanTatDangKi extends Component {
         formData.append('ngaytochuc', this.props.StateInfoRegisterService.info.thoigian);
         formData.append('diadiemtochuc', this.props.StateInfoRegisterService.info.diadiem);
         formData.append('mota', this.props.StateInfoRegisterService.info.mota);
+        formData.append('tongtien', tongTien);
 
         fetch(this.props.StateInfoSystem.domain + '/api/hoadon', {
             method: 'POST',
@@ -188,7 +195,9 @@ class HoanTatDangKi extends Component {
         .then(response => response.json())
         .then(response => {
             if(response.status === true){
-                console.log(response)
+                alert('Đã đăng kí hóa đơn.');
+                console.log(response);
+                window.location = '/';
             }
         })
         .catch(error => console.log(''))

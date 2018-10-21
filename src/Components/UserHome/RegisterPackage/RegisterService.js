@@ -251,12 +251,12 @@ class RegisterService extends Component {
 
                             <div className="form-group">
                                 <label>Địa điểm tổ chức</label>
-                                <input onChange={this.onChangeDiaDiem.bind(this)} value={this.props.StateInfoRegisterService.info.diadiem} className="form-control" style={{ marginbottom: '5px' }} type="text" placeholder="Địa điểm tổ chức" />
+                                <input disabled onChange={this.onChangeDiaDiem.bind(this)} value={this.props.StateInfoRegisterService.info.diadiem} className="form-control" style={{ marginbottom: '5px' }} type="text" placeholder="Địa điểm tổ chức" />
                             </div>
 
                             <div className="form-group">
                                 <label>Mô tả</label>
-                                <input onChange={this.onChangeMoTa.bind(this)} value={this.props.StateInfoRegisterService.info.mota} className="form-control" style={{ marginBottom: '5px' }} type="text" placeholder="Mô tả" />
+                                <textarea onChange={this.onChangeMoTa.bind(this)} value={this.props.StateInfoRegisterService.info.mota} className="form-control" style={{ marginBottom: '5px' }} type="text" placeholder="Mô tả" />
                             </div>
 
                             <div className="form-group">

@@ -3,6 +3,7 @@ import ListCard from '../Dashboard/ListCard';
 import DoanhThuIndex from './DoanhThu/DoanhThuIndex';
 import DatePicker from 'react-date-picker';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class ThongKeTongQuan extends Component {
     constructor(props) {
@@ -72,7 +73,17 @@ class ThongKeTongQuan extends Component {
                         </div>
                     </div>
                     <div className="col-md-4">
-                        <DoanhThuIndex></DoanhThuIndex>
+                        <div className="col-md-12">
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="pg_4_title">Thống kê doanh thu</div>
+                                    <div><Link to='/admin/thongke/doanhthu/thang'>Thống kê doanh thu theo tháng trong năm</Link></div>
+                                    <div><Link to='/admin/thongke/doanhthu/nam'>Thống kê doanh thu qua các năm</Link></div>
+                                    <div><Link to='/admin/thongke/donhang'>Thống kê đơn hàng</Link></div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

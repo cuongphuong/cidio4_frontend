@@ -72,13 +72,12 @@ class Home extends Component {
                 <div className="pg_4_baner">
                     <div className="container">
                         <div className="pg_4_sologan">
-                            <h1>Nền tảng quản lý và bán hàng đa kênh được sử dụng nhiều nhất Việt Nam</h1>
+                            <h1>Slogan for website.</h1>
                         </div>
                         <div className="pg_4_using">
                             <Link to='/register'>
                                 <button className="btn-lg pg_4_register">Đăng kí ngay</button>
                             </Link>
-
                         </div>
                     </div>
                     <div className="pg_4_banner">

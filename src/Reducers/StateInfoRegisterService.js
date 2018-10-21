@@ -1,7 +1,7 @@
 var obj = {
     id_goi_dichvu: null,
     info:{
-        diadiem: '',
+        diadiem: 'Nhà hàng 254NVL',
         thoigian: new Date(),
         mota: '',
         soban: 10

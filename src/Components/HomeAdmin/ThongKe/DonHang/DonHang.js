@@ -11,7 +11,7 @@ class DonHang extends Component {
             tunam: (new Date()).getFullYear() - 1,
             dennam: (new Date()).getFullYear(),
             optionYear: {},
-            optionYearSau: {}, 
+            optionYearSau: {},
             objYear: []
         }
     }
@@ -33,9 +33,9 @@ class DonHang extends Component {
         });
     }
 
-    setStateNone(){
+    setStateNone() {
         this.setState({
-            data : []
+            data: [],
         })
     }
 
@@ -64,6 +64,9 @@ class DonHang extends Component {
 
 
     fetchDataByYear(tunam, dennam) {
+        this.setState({
+            objYear: []
+        })
         this.setStateNone();
         fetch(this.props.StateInfoSystem.domain + '/api/thongke/donhang/nam/' + tunam + "/" + dennam, {
             method: 'GET',
@@ -97,10 +100,10 @@ class DonHang extends Component {
         this.setState({ type: event.target.value });
     }
 
-    handleAddYear(){
+    handleAddYear() {
         var tmp = [...this.state.objYear, this.refs.inputyear.value];
-        this.setState({objYear : [...this.state.objYear, this.refs.inputyear.value]})
-       
+        this.setState({ objYear: [...this.state.objYear, this.refs.inputyear.value] })
+        this.refs.inputyear.value = parseInt(this.refs.inputyear.value) + 1;
         this.fetchDataByMonth(tmp);
     }
 
@@ -138,8 +141,8 @@ class DonHang extends Component {
                                         </div>
                                     </div>
                                     :
-                                    <div><input ref="inputyear" type="number" className="form-control" placeholder="input year"></input>
-                                    <button onClick={() => this.handleAddYear()} className="btn btn-primary">Thêm</button></div>
+                                    <div className="form-inline" style={{ marginBottom: '10px' }}><input ref="inputyear" type="number" className="form-control" placeholder="input year"></input>
+                                        <button onClick={() => this.handleAddYear()} className="btn btn-primary">Thêm</button></div>
                             }
 
 
@@ -164,7 +167,7 @@ class DonHang extends Component {
                                             <Tooltip />
                                             <Legend />
                                             {
-                                                this.state.objYear.length > 0 ? this.state.objYear.map((e, i) => <Line key={i} type="monotone" dataKey={e} stroke="#8884d8" activeDot={{ r: 8 }} />) : ''
+                                                this.state.objYear.length > 0 ? this.state.objYear.map((e, i) => <Line key={i} type="monotone" dataKey={e} stroke="#8884d8" activeDot={{ r: 8 }} />) : <Line type="monotone" dataKey="Đơn hàng" stroke="#8884d8" activeDot={{ r: 8 }} />
                                             }
                                             {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
                                         </LineChart>
