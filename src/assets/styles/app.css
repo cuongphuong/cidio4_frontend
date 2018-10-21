@@ -14,7 +14,7 @@ ul.pg_content_list_card{
 .pg_content_list_card > .pg_content_card{
     background: #fff;
     vertical-align: top;
-    height: 250px;
+    height: 250px !important;
     border-radius: 2px;
     /* box-shadow: 0 0 5px 1px #eee; */
     padding: 5px;

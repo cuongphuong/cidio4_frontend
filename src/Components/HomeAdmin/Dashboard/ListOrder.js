@@ -102,8 +102,11 @@ class ListOrder extends Component {
                 })
                     .then(response => response.json())
                     .then(response => {
-                        if(response.status === true){
-                            console.log(response.data);
+                        if (response.status === true) {
+                            var index = this.state.lstHoaDon.findIndex(i => i.id_hoadon === response.data.id_hoadon);
+                            var tmpObj = [...this.state.lstHoaDon];
+                            tmpObj[index].tinhtrang = response.data.tinhtrang;
+                            this.setState({ lstHoaDon: tmpObj });
                         }
                     })
                     .catch(error => console.log(error));
@@ -111,6 +114,10 @@ class ListOrder extends Component {
 
             }
         }
+    }
+
+    handleCall(sdt) {
+        window.open("tel:" + sdt);
     }
 
     render() {
@@ -132,17 +139,17 @@ class ListOrder extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        (this.state.lstHoaDon.length > 0) ? this.state.lstHoaDon.map((e, i) => <tr>
+                                        (this.state.lstHoaDon.length > 0) ? this.state.lstHoaDon.map((e, i) => <tr key={i}>
                                             <td>{e.id_hoadon}</td>
                                             <td>{e.hoten}</td>
-                                            <td>{e.sodienthoai}</td>
+                                            <td><button style={{ padding: '0px' }} className="btn btn-link" onClick={() => this.handleCall(e.sodienthoai)}>{e.sodienthoai}</button></td>
                                             <td className="text-danger"> {e.tongtien.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })} <i className="mdi mdi-arrow-up" />
                                             </td>
                                             <td>
-                                                <label className="badge badge-danger">{e.tinhtrang === 1 ? 'Đã xác nhận' : 'Chưa xác nhận'}</label>
+                                                <label className={e.tinhtrang === 1 ? "badge badge-success" : "badge badge-danger"}>{e.tinhtrang === 1 ? 'Đã xác nhận' : 'Chưa xác nhận'}</label>
                                             </td>
                                             <td>
-                                                <button onClick={() => this.handleXacNhanHoadon(e.id_hoadon)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">Xác nhận hóa đơn</button>
+                                                <button onClick={() => this.handleXacNhanHoadon(e.id_hoadon)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">{e.tinhtrang === 1 ? 'Undo xác nhận' : 'Xác nhận hóa đơn'}</button>
                                                 <button onClick={() => this.handleChangeShowDisplay(e.id_goi, e.id_hoadon)} style={{ padding: '0px', display: 'block' }} className="btn btn-link">Hiển thị thực đơn chi tiết</button>
                                             </td>
                                         </tr>) : <tr></tr>

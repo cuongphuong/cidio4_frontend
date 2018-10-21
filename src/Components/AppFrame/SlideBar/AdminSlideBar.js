@@ -104,7 +104,7 @@ class SlideBar extends Component {
                                     <Link className="nav-link" to="/admin/thongke/doanhthu/home">Thống kê doanh thu</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/admin/thongke/dashboard">Thống kê đơn hàng</Link>
+                                    <Link className="nav-link" to="/admin/thongke/donhang">Thống kê đơn hàng</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/admin/service/package/lst">Thống kê thành viên</Link>

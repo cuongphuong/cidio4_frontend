@@ -24,6 +24,7 @@ import '../../styles/template/vendor.bundle.addons.css';
 import DoanhThuCacNam from './ThongKe/DoanhThu/DoanhThuCacNam';
 import ThongKeTongQuan from './ThongKe/ThongKeTongQuan';
 import DoanhThuIndex from './ThongKe/DoanhThu/DoanhThuIndex';
+import DonHang from './ThongKe/DonHang/DonHang';
 
 const HomeAdmin = ({ match, StateInfoUser }) => {
     if (StateInfoUser.id_chucvu != null) {
@@ -55,6 +56,7 @@ const HomeAdmin = ({ match, StateInfoUser }) => {
                                 <Route exact path={match.url + '/thongke/doanhthu/home'} component={DoanhThuIndex} />
                                 <Route exact path={match.url + '/thongke/doanhthu/thang'} component={DoanhThu} />
                                 <Route exact path={match.url + '/thongke/doanhthu/nam'} component={DoanhThuCacNam} />
+                                <Route exact path={match.url + '/thongke/donhang'} component={DonHang} />
                                 <Route exact path={match.url + '/don-hang'} component={DuyetDonHang} />
                             </div>
                             <Footer></Footer>
